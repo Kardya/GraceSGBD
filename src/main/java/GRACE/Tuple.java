@@ -23,10 +23,28 @@ public class Tuple {
         this.attributs = new ArrayList<String>(attributs);
     }
     
+    public Tuple(){}
+    
     public List<String> getAttributsList(){
         return this.attributs;
     }
     
+    public String getAttributCle(){
+        return this.attributCle;
+    }
+    
+    public void concatAttributs(Tuple tuple1, Tuple tuple2) 
+    {
+        this.attributCle = tuple1.getAttributCle();
+        this.attributs.addAll(tuple1.getAttributsList());
+        this.attributs.add(tuple2.getAttributCle());
+        this.attributs.addAll(tuple2.getAttributsList());
+    }
+    
+    public void videTuple(){
+        this.attributs.clear();
+        this.attributCle = null;
+    }
     public String toString()
     {
         String chaine = this.attributCle + " ";
