@@ -56,6 +56,32 @@ public class MC {
             partTuples.add(tuples.get(i-1));
             this.buffers.get(i).fill(partTuples);
         }
+        
+        //on stocke le contenu de chaque buffer dans la table correspondante
+        for (int i=1; i<this.taille; i++)
+        {
+            //pour chaque tuple, on envoie les données
+            for (int j=0; j<this.buffers.get(i).getNbTuples(); j++)
+            {
+                store('R',i,this.buffers.get(i).getTuple(j));
+            }
+        }
+    }
+    
+    public void store(char lettreTable, int numBuffer, Tuple tupleBuffer)
+    {
+        if (lettreTable == 'R')
+        {
+            this.disque.getTableR(numBuffer-1).ecrireTuple(tupleBuffer);
+        }
+    }
+    
+    public void vider()
+    {
+        for(Buffer buffer : this.buffers)
+        {
+            buffer.vider();
+        }
     }
     
     public String toString()
