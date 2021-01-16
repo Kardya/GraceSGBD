@@ -15,11 +15,15 @@ public class App
        Table R2 = new Table ("R2");
        Table R3 = new Table ("R3");
        
-       ArrayList<Table> disque = new ArrayList<Table>();
-       disque.add(R);
-       disque.add(R1);
-       disque.add(R2);
-       disque.add(R3);
+       ArrayList<Table> tables = new ArrayList<Table>();
+       ArrayList<Table> tablesR = new ArrayList<Table>();
+       ArrayList<Table> tablesS = new ArrayList<Table>();
+       tables.add(R);
+       tablesR.add(R1);
+       tablesR.add(R2);
+       tablesR.add(R3);
+       
+       Disque disque = new Disque(tables,tablesR,tablesS);
        
        ArrayList<String> liste1 = new ArrayList<String>();
        liste1.add("Redouane");
@@ -63,7 +67,7 @@ public class App
        R.ecrireTuple(tuple4);
        R.ecrireTuple(tuple5);
        R.ecrireTuple(tuple6);
-       System.out.println(R);
+       System.out.println(disque.getTableR());
        
        MC mc = new MC();
        mc.fill(R);
