@@ -32,8 +32,8 @@ public class App
        Tuple tuple1 = new Tuple("1",liste1);
        
        ArrayList<String> liste2 = new ArrayList<String>();
-       liste2.add("Antony");
-       liste2.add("Gomes");
+       liste2.add("Anttony");
+       liste2.add("Gomess");
        liste2.add("22");
        Tuple tuple2 = new Tuple("2",liste2);
        
