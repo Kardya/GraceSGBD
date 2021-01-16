@@ -23,7 +23,9 @@ public class Tuple {
         this.attributs = new ArrayList<String>(attributs);
     }
     
-    public Tuple(){}
+    public Tuple(){
+        this.attributs = new ArrayList<String>();
+    }
     
     public List<String> getAttributsList(){
         return this.attributs;
