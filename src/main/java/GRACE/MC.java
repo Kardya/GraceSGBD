@@ -102,9 +102,9 @@ public class MC {
     public void Grace(int col1, int col2){
         Tuple tupleConcat = new Tuple();
         // On récupère les tuples de R0 dans le buffer 0
-        this.buffers.get(0).fill(this.disque.getTableR(1).getBlocs().get(0).getTuple());
+        this.buffers.get(0).fill(this.disque.getTableR(0).getBlocs().get(0).getTuple());
         // On récupère les tuples de S0 dans le buffer 1
-        this.buffers.get(1).fill(this.disque.getTableS(1).getBlocs().get(0).getTuple());
+        this.buffers.get(1).fill(this.disque.getTableS(0).getBlocs().get(0).getTuple());
         // Pour chaque tuple du buffer 0
         for(Tuple tR : this.buffers.get(0).getTuples()){
             // Pour chaque tuple du buffer 1
