@@ -55,6 +55,9 @@ public class Table {
         return this.blocs;
     }
     
+    public void viderTable(){
+        this.blocs.clear();
+    }
     public String toString()
     {
         String chaine = "Nom de la table : " + this.nom + "\n";
