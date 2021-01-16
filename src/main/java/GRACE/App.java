@@ -15,6 +15,11 @@ public class App
        Table R2 = new Table ("R2");
        Table R3 = new Table ("R3");
        
+       Table S = new Table ("S");
+       Table S1 = new Table ("S1");
+       Table S2 = new Table ("S2");
+       Table S3 = new Table ("S3");
+       
        ArrayList<Table> tables = new ArrayList<Table>();
        ArrayList<Table> tablesR = new ArrayList<Table>();
        ArrayList<Table> tablesS = new ArrayList<Table>();
@@ -22,6 +27,9 @@ public class App
        tablesR.add(R1);
        tablesR.add(R2);
        tablesR.add(R3);
+       tablesS.add(S1);
+       tablesS.add(S2);
+       tablesS.add(S3);
        
        Disque disque = new Disque(tables,tablesR,tablesS);
        
@@ -67,12 +75,56 @@ public class App
        R.ecrireTuple(tuple4);
        R.ecrireTuple(tuple5);
        R.ecrireTuple(tuple6);
-       //System.out.println(disque.getTableR());
+       
+       ArrayList<String> liste7 = new ArrayList<String>();
+       liste7.add("Herine");
+       liste7.add("Servan");
+       liste7.add("22");
+       Tuple tuple7 = new Tuple("1",liste7);
+       
+       ArrayList<String> liste8 = new ArrayList<String>();
+       liste8.add("Lise");
+       liste8.add("Kabbache");
+       liste8.add("25");
+       Tuple tuple8 = new Tuple("2",liste8);
+       
+       ArrayList<String> liste9 = new ArrayList<String>();
+       liste9.add("Yoann");
+       liste9.add("Vincent");
+       liste9.add("20");
+       Tuple tuple9 = new Tuple("3",liste9);
+       
+       ArrayList<String> liste10 = new ArrayList<String>();
+       liste10.add("Bastien");
+       liste10.add("Bobb");
+       liste10.add("22");
+       Tuple tuple10 = new Tuple("4",liste10);
+       
+       ArrayList<String> liste11 = new ArrayList<String>();
+       liste11.add("Rafik");
+       liste11.add("Boushaki");
+       liste11.add("22");
+       Tuple tuple11 = new Tuple("5",liste11);
+       
+       ArrayList<String> liste12 = new ArrayList<String>();
+       liste12.add("Wassim");
+       liste12.add("Ouchene");
+       liste12.add("22");
+       Tuple tuple12 = new Tuple("6",liste12);
+       
+       S.ecrireTuple(tuple7);
+       S.ecrireTuple(tuple8);
+       S.ecrireTuple(tuple9);
+       S.ecrireTuple(tuple10);
+       S.ecrireTuple(tuple11);
+       S.ecrireTuple(tuple12);
+       
+       //System.out.println(R);
+       //System.out.println(S);
        
        MC mc = new MC(disque);
        mc.fill(R);
-       mc.vider();
-       System.out.println(mc);
-        System.out.println(disque);
+       mc.fill(S);
+       System.out.println(disque);
     }
 }

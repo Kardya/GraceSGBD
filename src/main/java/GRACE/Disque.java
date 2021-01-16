@@ -41,6 +41,13 @@ public class Disque {
         {
             chaine += table.toString();
         }
+        
+        chaine += "Sous tables de S:\n";
+        
+        for (Table table : this.tablesS)
+        {
+            chaine += table.toString();
+        }
         return chaine;
     }
     

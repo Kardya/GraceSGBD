@@ -55,6 +55,11 @@ public class Table {
         return this.blocs;
     }
     
+    public String getNom()
+    {
+        return this.nom;
+    }
+    
     public void viderTable(){
         this.blocs.clear();
     }

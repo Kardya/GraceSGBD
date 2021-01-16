@@ -37,15 +37,16 @@ public class MC {
     {
         ArrayList<Bloc> blocs = table.getBlocs();
         
-        //for (int i=0; i<table.getNbBlocs(); i++)
-        //{
-            this.buffers.get(0).fillBloc(blocs.get(0));
-            shuffle();
-        //}
+        for (int i=0; i<table.getNbBlocs(); i++)
+        {
+            this.buffers.get(0).fillBloc(blocs.get(i));
+            shuffle(table.getNom());
+            vider();
+        }
     }
     
     //répartit le bloc entre les buffers restants
-    public void shuffle()
+    public void shuffle(String nomTable)
     {
         int nbTuples = this.buffers.get(0).getNbTuples();
         ArrayList<Tuple> tuples = this.buffers.get(0).getTuples();
@@ -63,16 +64,20 @@ public class MC {
             //pour chaque tuple, on envoie les données
             for (int j=0; j<this.buffers.get(i).getNbTuples(); j++)
             {
-                store('R',i,this.buffers.get(i).getTuple(j));
+                store(nomTable,i,this.buffers.get(i).getTuple(j));
             }
         }
     }
     
-    public void store(char lettreTable, int numBuffer, Tuple tupleBuffer)
+    public void store(String nomTable, int numBuffer, Tuple tupleBuffer)
     {
-        if (lettreTable == 'R')
+        if (nomTable == "R")
         {
             this.disque.getTableR(numBuffer-1).ecrireTuple(tupleBuffer);
+        }
+        else
+        {
+            this.disque.getTableS(numBuffer-1).ecrireTuple(tupleBuffer);
         }
     }
     
@@ -106,7 +111,7 @@ public class MC {
             for(Tuple tS : this.buffers.get(1).getTuples()){
                 if (tR.getAttributsList().get(col1).equals(tS.getAttributsList().get(col2))){
                     tupleConcat.concatAttributs(tR,tS);
-                    this.buffers.get(3).fillTuple(tupleConcat);
+                    //this.buffers.get(3).fillTuple(tupleConcat);
                     tupleConcat.videTuple();
                 }
             }
