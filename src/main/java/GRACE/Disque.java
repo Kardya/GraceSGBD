@@ -44,8 +44,8 @@ public class Disque {
         return chaine;
     }
     
-    public Table getTableRes(){
-        return this.tablesRes.get(0);
+    public Table getTableRes(int num){
+        return this.tablesRes.get(num);
     }
     
     public void setTableRes(Table e){
