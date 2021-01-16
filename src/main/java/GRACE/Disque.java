@@ -24,14 +24,24 @@ public class Disque {
         this.tablesS = tablesS;
     }
     
-    public Table getTableR()
+    public Table getTableR(int num)
     {
-        return this.tables.get(0);
+        return this.tablesR.get(num);
     }
     
-    public Table getTableS()
+    public Table getTableS(int num)
     {
-        return this.tables.get(1);
+        return this.tablesS.get(num);
+    }
+    
+    public String toString()
+    {
+        String chaine = "Sous tables de R :\n";
+        for (Table table : this.tablesR)
+        {
+            chaine += table.toString();
+        }
+        return chaine;
     }
     
     public Table getTableRes(){
