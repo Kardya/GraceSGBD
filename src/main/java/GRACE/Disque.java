@@ -15,6 +15,7 @@ public class Disque {
     private ArrayList<Table> tables;
     private ArrayList<Table> tablesR;
     private ArrayList<Table> tablesS;
+    private ArrayList<Table> tablesRes;
     
     public Disque(ArrayList<Table> tables, ArrayList<Table> tablesR, ArrayList<Table> tablesS)
     {
@@ -31,5 +32,13 @@ public class Disque {
     public Table getTableS()
     {
         return this.tables.get(1);
+    }
+    
+    public Table getTableRes(){
+        return this.tablesRes.get(0);
+    }
+    
+    public void setTableRes(Table e){
+        this.tablesRes.add(e);
     }
 }
