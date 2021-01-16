@@ -111,7 +111,7 @@ public class MC {
             for(Tuple tS : this.buffers.get(1).getTuples()){
                 if (tR.getAttributsList().get(col1).equals(tS.getAttributsList().get(col2))){
                     tupleConcat.concatAttributs(tR,tS);
-                    //this.buffers.get(3).fillTuple(tupleConcat);
+                    this.buffers.get(3).fillTuple(tupleConcat);
                     tupleConcat.videTuple();
                 }
             }

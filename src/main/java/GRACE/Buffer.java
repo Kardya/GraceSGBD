@@ -26,6 +26,10 @@ public class Buffer {
     {
         this.tuples = tuples;
     }
+    
+    public void fillTuple(Tuple tuple){
+        this.tuples.add(tuple);
+    }
    
     public void fillBloc(Bloc bloc)
     {
