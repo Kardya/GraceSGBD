@@ -67,4 +67,26 @@ public class MC {
         }
         return chaine;
     }
+    
+    public void Grace(int col1, int col2){
+        Table temp = new Table("Temp");
+        Tuple tupleConcat = new Tuple();
+        // On récupère les tuples de R0 dans le buffer 0
+        this.buffers.get(0).fill(this.disque.getTableR().getBlocs().get(0).getTuple());
+        // On récupère les tuples de S0 dans le buffer 1
+        this.buffers.get(1).fill(this.disque.getTableS().getBlocs().get(0).getTuple());
+        // Pour chaque tuple du buffer 0
+        for(Tuple tR : this.buffers.get(0).getTuples()){
+            // Pour chaque tuple du buffer 1
+            for(Tuple tS : this.buffers.get(1).getTuples()){
+                if (tR.getAttributsList().get(col1).equals(tS.getAttributsList().get(col2))){
+                    tupleConcat.concatAttributs(tR,tS);
+                    temp.ecrireTuple(tupleConcat);
+                    tupleConcat.videTuple();
+                }
+            }
+        }
+        this.disque.setTableRes(temp);
+        temp.viderTable();
+    }
 }
