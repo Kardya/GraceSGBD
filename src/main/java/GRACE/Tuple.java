@@ -22,4 +22,20 @@ public class Tuple {
         this.attributCle = attributCle;
         this.attributs = new ArrayList<String>(attributs);
     }
+    
+    public List<String> getAttributsList(){
+        return this.attributs;
+    }
+    
+    public String toString()
+    {
+        String chaine = this.attributCle + " ";
+        
+        for (String attribut : attributs)
+        {
+            chaine += attribut + " ";
+        }
+        chaine += "\n";
+        return chaine;
+    }
 }

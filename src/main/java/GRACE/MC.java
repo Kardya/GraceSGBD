@@ -19,5 +19,50 @@ public class MC {
     public MC()
     {
         this.buffers = new ArrayList<Buffer>();
+        this.taille = 4;
+        init();
+    }
+    
+    private void init()
+    {
+        for (int i=0; i<taille; i++)
+        {
+            this.buffers.add(new Buffer(i));
+        }
+    }
+    
+    public void fill(Table table)
+    {
+        ArrayList<Bloc> blocs = table.getBlocs();
+        
+        //for (int i=0; i<table.getNbBlocs(); i++)
+        //{
+            this.buffers.get(0).fillBloc(blocs.get(0));
+            shuffle();
+        //}
+    }
+    
+    //répartit le bloc entre les buffers restants
+    public void shuffle()
+    {
+        int nbTuples = this.buffers.get(0).getNbTuples();
+        ArrayList<Tuple> tuples = this.buffers.get(0).getTuples();
+        //on affecte chaque buffer (sans l'initial)
+        for (int i=1; i<nbTuples+1; i++)
+        {
+            ArrayList<Tuple> partTuples = new ArrayList<Tuple>();
+            partTuples.add(tuples.get(i-1));
+            this.buffers.get(i).fill(partTuples);
+        }
+    }
+    
+    public String toString()
+    {
+        String chaine = "MC :\n";
+        for (Buffer b : this.buffers)
+        {
+            chaine += b.toString();
+        }
+        return chaine;
     }
 }

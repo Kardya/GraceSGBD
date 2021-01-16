@@ -15,26 +15,56 @@ public class Bloc {
     private static int nbLectures;
     private static int nbEcritures;
     private int taille;
+    private boolean plein;
     ArrayList<Tuple> tuples;
 
     public Bloc()
     {
         this.tuples = new ArrayList<Tuple>();
+        taille = 3;
+        plein = false;
+    }
+    
+    public boolean getPlein()
+    {
+        return this.plein;
     }
 
     public void lireTuple()
     {
-        /*for(Tuple t : tuples){
-           for(String a : t){
-             System.out.Println("Faut mettre des choses ici mdr");
+        for(Tuple t : tuples){
+           for(String a : t.getAttributsList()){
+             System.out.println();
            }
-        }*/
+        }
     }
 
-    public void ecrireTuple(String attributCle,List<String> attributs)
+    public void ecrireTuple(Tuple tuple)
     {
-      if(tuples.size() < taille){
-        tuples.add(new Tuple(attributCle,attributs));
+      if(!plein){
+        tuples.add(tuple);
+        
+        if (tuples.size() >= taille)
+        {
+            plein = true;
+        }
       }
+    }
+    
+    public ArrayList<Tuple> getTuple()
+    {
+        return this.tuples;
+    }
+    
+    public String toString()
+    {
+        String chaine = "";
+        
+        for (Tuple tuple : tuples)
+        {
+            chaine += tuple.toString();
+        }
+        chaine += "\n";
+        return chaine;
     }
 }
