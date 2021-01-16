@@ -15,13 +15,14 @@ public class Disque {
     private ArrayList<Table> tables;
     private ArrayList<Table> tablesR;
     private ArrayList<Table> tablesS;
-    private ArrayList<Table> tablesRes;
+    private Table tableRes;
     
-    public Disque(ArrayList<Table> tables, ArrayList<Table> tablesR, ArrayList<Table> tablesS)
+    public Disque(ArrayList<Table> tables, ArrayList<Table> tablesR, ArrayList<Table> tablesS, Table tableRes)
     {
         this.tables = tables;
         this.tablesR = tablesR;
         this.tablesS = tablesS;
+        this.tableRes = tableRes;
     }
     
     public Table getTableR(int num)
@@ -48,14 +49,19 @@ public class Disque {
         {
             chaine += table.toString();
         }
+        
+        chaine += "table de Res:\n";
+        
+        for (Bloc bloc : this.tableRes.getBlocs())
+        {
+            for(Tuple tuple : bloc.tuples){
+                chaine += tuple.toString();
+            }
+        }
         return chaine;
     }
     
-    public Table getTableRes(int num){
-        return this.tablesRes.get(num);
-    }
-    
-    public void setTableRes(Table e){
-        this.tablesRes.add(e);
+    public Table getTableRes(){
+        return this.tableRes;
     }
 }
