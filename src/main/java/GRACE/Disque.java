@@ -51,13 +51,9 @@ public class Disque {
         }
         
         chaine += "table de Res:\n";
-        
-        for (Bloc bloc : this.tableRes.getBlocs())
-        {
-            for(Tuple tuple : bloc.tuples){
-                chaine += tuple.toString();
-            }
-        }
+
+        chaine += this.tableRes.toString();
+
         return chaine;
     }
     
