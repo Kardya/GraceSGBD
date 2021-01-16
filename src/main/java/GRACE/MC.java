@@ -95,7 +95,6 @@ public class MC {
     }
     
     public void Grace(int col1, int col2){
-        Table temp = new Table("Temp");
         Tuple tupleConcat = new Tuple();
         // On récupère les tuples de R0 dans le buffer 0
         this.buffers.get(0).fill(this.disque.getTableR(0).getBlocs().get(0).getTuple());
@@ -107,12 +106,13 @@ public class MC {
             for(Tuple tS : this.buffers.get(1).getTuples()){
                 if (tR.getAttributsList().get(col1).equals(tS.getAttributsList().get(col2))){
                     tupleConcat.concatAttributs(tR,tS);
-                    temp.ecrireTuple(tupleConcat);
+                    this.buffers.get(3).fillTuple(tupleConcat);
                     tupleConcat.videTuple();
                 }
             }
         }
-        this.disque.setTableRes(temp);
-        temp.viderTable();
+        for(Tuple tB : this.buffers.get(3).getTuples()){
+            this.disque.getTableRes(0).ecrireTuple(tB);
+        }
     }
 }
