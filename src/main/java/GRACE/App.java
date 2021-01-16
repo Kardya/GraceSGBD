@@ -67,10 +67,12 @@ public class App
        R.ecrireTuple(tuple4);
        R.ecrireTuple(tuple5);
        R.ecrireTuple(tuple6);
-       System.out.println(disque.getTableR());
+       //System.out.println(disque.getTableR());
        
        MC mc = new MC(disque);
        mc.fill(R);
+       mc.vider();
        System.out.println(mc);
+        System.out.println(disque);
     }
 }
