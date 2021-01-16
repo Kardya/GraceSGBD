@@ -43,10 +43,6 @@ public class Tuple {
         this.attributs.addAll(tuple2.getAttributsList());
     }
     
-    public void videTuple(){
-        this.attributs.clear();
-        this.attributCle = null;
-    }
     public String toString()
     {
         String chaine = this.attributCle + " ";
