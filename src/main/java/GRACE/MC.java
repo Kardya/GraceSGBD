@@ -15,11 +15,13 @@ import java.util.List;
 public class MC {
     private int taille;
     private ArrayList<Buffer> buffers;
+    private Disque disque;
     
-    public MC()
+    public MC(Disque disque)
     {
         this.buffers = new ArrayList<Buffer>();
         this.taille = 4;
+        this.disque = disque;
         init();
     }
     
