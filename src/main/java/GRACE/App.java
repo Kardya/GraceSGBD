@@ -23,6 +23,7 @@ public class App
        ArrayList<Table> tables = new ArrayList<Table>();
        ArrayList<Table> tablesR = new ArrayList<Table>();
        ArrayList<Table> tablesS = new ArrayList<Table>();
+       Table tableRes = new Table("Resultat");
        tables.add(R);
        tablesR.add(R1);
        tablesR.add(R2);
@@ -31,7 +32,7 @@ public class App
        tablesS.add(S2);
        tablesS.add(S3);
        
-       Disque disque = new Disque(tables,tablesR,tablesS);
+       Disque disque = new Disque(tables,tablesR,tablesS,tableRes);
        
        ArrayList<String> liste1 = new ArrayList<String>();
        liste1.add("Redouane");
@@ -125,6 +126,7 @@ public class App
        MC mc = new MC(disque);
        mc.fill(R);
        mc.fill(S);
+       mc.Grace(2, 2);
        System.out.println(disque);
     }
 }
