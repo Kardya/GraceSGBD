@@ -45,6 +45,16 @@ public class Buffer {
         return this.tuples;
     }
     
+    public Tuple getTuple(int i)
+    {
+        return this.tuples.get(i);
+    }
+    
+    public void vider()
+    {
+        this.tuples.clear();
+    }
+    
     public String toString()
     {
         String chaine = "Buffer n°" + this.id + "\n";
