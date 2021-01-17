@@ -15,6 +15,7 @@ public class Buffer {
     private int id;
     int taille = 3;
     ArrayList<Tuple> tuples;
+    private char lettre;
     
     public Buffer(int id)
     {
@@ -57,6 +58,16 @@ public class Buffer {
     public void vider()
     {
         this.tuples.clear();
+    }
+    
+    public void setLettre(char lettre)
+    {
+        this.lettre = lettre;
+    }
+    
+    public char getLettre()
+    {
+        return this.lettre;
     }
     
     public String toString()
