@@ -101,31 +101,57 @@ public class MC {
     
     public void Grace(int col1, int col2){
         int i =0;
+        int tailleRb = 0;//On récupère le nombre de bloc de la sous-table Ri
+        int tailleSb = 0;//On récupère le nombre de bloc de la sous-table Si
+        int iterS = 0;//Pour connaitre le nombre d'itération pour les buffers de Si
         while(i<3){
+            tailleRb = this.disque.getTableR(i).getNbBlocs();
+            tailleSb = this.disque.getTableS(i).getNbBlocs();
             if(this.buffers.get(3).tuples.size()< this.buffers.get(3).taille-1){
-                if(this.disque.getTableR(i).getBlocs().size() + this.disque.getTableS(i).getBlocs().size() < 4){
-                    // On récupère les tuples de R0 dans le buffer 0
-                    this.buffers.get(0).fill(this.disque.getTableR(i).getBlocs().get(0).getTuple());
-                    // On récupère les tuples de S0 dans le buffer 1
-                    this.buffers.get(1).fill(this.disque.getTableS(i).getBlocs().get(0).getTuple());
-                    // Pour chaque tuple du buffer 0
-                    for(Tuple tR : this.buffers.get(0).getTuples()){
-                        // Pour chaque tuple du buffer 1
-                        for(Tuple tS : this.buffers.get(1).getTuples()){
-                            /*Si la valeur de la colonne désignée pour Ri est égal à la valeur
-                            de la colonne de Si alors*/
-                            if (tR.getAttributsList().get(col1).equals(tS.getAttributsList().get(col2))){
-                                Tuple tupleConcat = new Tuple();
-                                //On concatène les deux tuples
-                                tupleConcat.concatAttributs(tR,tS);
-                                //On insère le tuple concatèné dans le buffer 3
-                                this.buffers.get(3).fillTuple(tupleConcat);
-                                System.out.println(this.buffers.get(3));
+                
+                if(tailleRb + tailleSb < 4){
+                    if(tailleRb == 2){
+                        this.buffers.get(0).fill(this.disque.getTableR(i).getBlocs().get(0).getTuple());
+                        this.buffers.get(1).fill(this.disque.getTableR(i).getBlocs().get(1).getTuple());
+                        this.buffers.get(2).fill(this.disque.getTableS(i).getBlocs().get(0).getTuple());
+                    }else if(tailleSb == 2){
+                        this.buffers.get(0).fill(this.disque.getTableR(i).getBlocs().get(0).getTuple());
+                        this.buffers.get(1).fill(this.disque.getTableS(i).getBlocs().get(0).getTuple());
+                        this.buffers.get(2).fill(this.disque.getTableS(i).getBlocs().get(1).getTuple());
+                    }else{
+                        // On récupère les tuples de R0 dans le buffer 0
+                        this.buffers.get(0).fill(this.disque.getTableR(i).getBlocs().get(0).getTuple());
+                        // On récupère les tuples de S0 dans le buffer 1
+                        this.buffers.get(1).fill(this.disque.getTableS(i).getBlocs().get(0).getTuple());
+                    }
+                    if(tailleSb == 2 || (tailleSb ==1 && tailleRb == 1)){
+                        iterS = 1;
+                    }else if(tailleRb == 2){
+                        iterS = 2;
+                    }
+                    for(int iR = 0; iR < tailleRb;iR++){//On regarde nbBlocs pour connaitre le nb d'itération
+                        // Pour chaque tuple du buffer iR
+                        for(Tuple tR : this.buffers.get(iR).getTuples()){
+                            // Pour chaque tuple du buffer 1
+                            for(int iS = 0; iS < tailleSb;iS++){//On regarde nbBlocs pour connaitre le nb d'itération
+                                System.out.println("val iterS : "+iterS);
+                                for(Tuple tS : this.buffers.get(iS+iterS).getTuples()){
+                                    /*Si la valeur de la colonne désignée pour Ri est égal à la valeur
+                                    de la colonne de Si alors*/
+                                    if (tR.getAttributsList().get(col1).equals(tS.getAttributsList().get(col2))){
+                                        Tuple tupleConcat = new Tuple();
+                                        //On concatène les deux tuples
+                                        tupleConcat.concatAttributs(tR,tS);
+                                        //On insère le tuple concatèné dans le buffer 3
+                                        this.buffers.get(3).fillTuple(tupleConcat);
+                                        System.out.println(this.buffers.get(3));
+                                    }
+                                }
                             }
                         }
                     }
                 }else{
-                    this.Cartesien();
+                    this.Cartesien(i,col1,col2);
                 }
             i++;
             }else{//Si le buffer 3 contient déjà plein
