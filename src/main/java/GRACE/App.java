@@ -98,7 +98,7 @@ public class App
        ArrayList<String> liste10 = new ArrayList<String>();
        liste10.add("Bastien");
        liste10.add("Bobb");
-       liste10.add("22");
+       liste10.add("21");
        Tuple tuple10 = new Tuple("4",liste10);
        
        ArrayList<String> liste11 = new ArrayList<String>();
@@ -113,12 +113,117 @@ public class App
        liste12.add("22");
        Tuple tuple12 = new Tuple("6",liste12);
        
+       ArrayList<String> liste13 = new ArrayList<String>();
+       liste13.add("Elhadj");
+       liste13.add("Balde");
+       liste13.add("23");
+       Tuple tuple13 = new Tuple("7",liste13);
+       
+       ArrayList<String> liste14 = new ArrayList<String>();
+       liste14.add("Sacha");
+       liste14.add("Choumiloff");
+       liste14.add("22");
+       Tuple tuple14 = new Tuple("8",liste14);
+       
+       ArrayList<String> liste15 = new ArrayList<String>();
+       liste15.add("Lucas");
+       liste15.add("Chapelon");
+       liste15.add("22");
+       Tuple tuple15 = new Tuple("9",liste15);
+       
+       ArrayList<String> liste16 = new ArrayList<String>();
+       liste16.add("Dorine");
+       liste16.add("Chassagne");
+       liste16.add("23");
+       Tuple tuple16 = new Tuple("10",liste16);
+       
+       ArrayList<String> liste17 = new ArrayList<String>();
+       liste17.add("Jeremy");
+       liste17.add("Hurdebourcq");
+       liste17.add("22");
+       Tuple tuple17 = new Tuple("11",liste17);
+       
+       ArrayList<String> liste18 = new ArrayList<String>();
+       liste18.add("Guillaume");
+       liste18.add("Lortet");
+       liste18.add("22");
+       Tuple tuple18 = new Tuple("12",liste18);
+       
+       ArrayList<String> liste19 = new ArrayList<String>();
+       liste19.add("Francinette");
+       liste19.add("Atchade");
+       liste19.add("22");
+       Tuple tuple19 = new Tuple("13",liste19);
+       
+       ArrayList<String> liste20 = new ArrayList<String>();
+       liste20.add("Emile");
+       liste20.add("Aveko");
+       liste20.add("22");
+       Tuple tuple20 = new Tuple("14",liste20);
+       
+       ArrayList<String> liste21 = new ArrayList<String>();
+       liste21.add("Dabi-Dit-Oumar");
+       liste21.add("Diawara");
+       liste21.add("22");
+       Tuple tuple21 = new Tuple("15",liste21);
+       
+       ArrayList<String> liste22 = new ArrayList<String>();
+       liste22.add("Joyeuse");
+       liste22.add("Uwizeye");
+       liste22.add("22");
+       Tuple tuple22 = new Tuple("16",liste22);
+       
+       ArrayList<String> liste23 = new ArrayList<String>();
+       liste23.add("Iman");
+       liste23.add("Sabouhi");
+       liste23.add("22");
+       Tuple tuple23 = new Tuple("17",liste23);
+       
+       ArrayList<String> liste24 = new ArrayList<String>();
+       liste24.add("Nathan");
+       liste24.add("Voizeux");
+       liste24.add("22");
+       Tuple tuple24 = new Tuple("18",liste24);
+       
+       ArrayList<String> liste25 = new ArrayList<String>();
+       liste25.add("Sebastien");
+       liste25.add("Guillemin");
+       liste25.add("23");
+       Tuple tuple25 = new Tuple("19",liste25);
+       
+       ArrayList<String> liste26 = new ArrayList<String>();
+       liste26.add("Baptiste");
+       liste26.add("Chemain");
+       liste26.add("22");
+       Tuple tuple26 = new Tuple("20",liste26);
+       
+       ArrayList<String> liste27 = new ArrayList<String>();
+       liste27.add("Wassila");
+       liste27.add("Ziani");
+       liste27.add("22");
+       Tuple tuple27 = new Tuple("21",liste27);
+       
        S.ecrireTuple(tuple7);
        S.ecrireTuple(tuple8);
        S.ecrireTuple(tuple9);
        S.ecrireTuple(tuple10);
        S.ecrireTuple(tuple11);
        S.ecrireTuple(tuple12);
+       S.ecrireTuple(tuple13);
+       S.ecrireTuple(tuple14);
+       S.ecrireTuple(tuple15);
+       S.ecrireTuple(tuple16);
+       S.ecrireTuple(tuple17);
+       S.ecrireTuple(tuple18);
+       S.ecrireTuple(tuple19);
+       S.ecrireTuple(tuple20);
+       S.ecrireTuple(tuple21);
+       S.ecrireTuple(tuple22);
+       S.ecrireTuple(tuple23);
+       S.ecrireTuple(tuple24);
+       S.ecrireTuple(tuple25);
+       S.ecrireTuple(tuple26);
+       S.ecrireTuple(tuple27);
        
        //System.out.println(R);
        //System.out.println(S);
