@@ -134,7 +134,7 @@ public class MC {
                         for(Tuple tR : this.buffers.get(iR).getTuples()){
                             // Pour chaque tuple du buffer 1
                             for(int iS = 0; iS < tailleSb;iS++){//On regarde nbBlocs pour connaitre le nb d'itération
-                                System.out.println("val iterS : "+iterS);
+                                //System.out.println("val iterS : "+iterS);
                                 for(Tuple tS : this.buffers.get(iS+iterS).getTuples()){
                                     /*Si la valeur de la colonne désignée pour Ri est égal à la valeur
                                     de la colonne de Si alors*/
@@ -144,7 +144,7 @@ public class MC {
                                         tupleConcat.concatAttributs(tR,tS);
                                         //On insère le tuple concatèné dans le buffer 3
                                         this.buffers.get(3).fillTuple(tupleConcat);
-                                        System.out.println(this.buffers.get(3));
+                                        //System.out.println(this.buffers.get(3));
                                     }
                                 }
                             }
@@ -306,5 +306,6 @@ public class MC {
         {
             this.disque.getTableRes().ecrireTuple(tuple);
         }
+        vider();
     }
 }
