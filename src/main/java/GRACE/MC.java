@@ -184,28 +184,127 @@ public class MC {
         ArrayList<Bloc> blocsSi = this.disque.getTableS(i).getBlocs(); //blocs de Si
         Bloc blocRi; //bloc temporaire qui va contenir le bloc de R avec lequel on travaille
         Bloc blocSi; //bloc temporaire qui va contenir le bloc de S avec lequel on travaille
+        int decalageRi = 0; //indice permettant de savoir le bloc de Ri à stocker dans un buffer
+        int decalageSi = 0; //indice permettant de savoir le bloc de Si à stocker dans un buffer
+        int sousDecalageRi = 0;
+        boolean end = false; //booléen indiquant la fin de jointure entre Ri et Si
         /**********************************/
         
-        //si Ri prend plus d'un buffer
-        if (nbBlocsRi >= 1)
+        while(!end)
         {
-            for (int j=0; j<nbBlocsRi; j+=2)
+            //chargement des buffers en fonction de bloc de Ri et Si restants
+            
+            /**************chargement du/des bloc(s) de Ri**************/
+            if ((nbBlocsRi - decalageRi) > 1)
             {
-                blocRi = blocsRi.get(j);
-                //this.buffers
-                for (int k=0; k<nbBlocsSi; k++)
+                this.buffers.get(0).fillBloc(blocsRi.get(decalageRi));
+                this.buffers.get(0).setLettre('R');
+                this.buffers.get(1).fillBloc(blocsRi.get(decalageRi+1));
+                this.buffers.get(1).setLettre('R');
+                sousDecalageRi = 2;
+            }
+            else if ((nbBlocsRi - decalageRi) == 1)
+            {
+                this.buffers.get(0).fillBloc(blocsRi.get(decalageRi));
+                this.buffers.get(0).setLettre('R');
+                sousDecalageRi = 1;
+            }
+            /***********************************************************/
+            
+            /**************chargement du/des bloc(s) de Si**************/
+            if ((nbBlocsSi - decalageSi) > 1)
+            {
+                //on vérifie d'abord si le buffer1 n'est pas occupé
+                if (this.buffers.get(1).getNbTuples() == 0)
                 {
-                    blocSi = blocsSi.get(k);
-                    jointure(blocRi,blocSi,col1,col2);
+                    this.buffers.get(1).fillBloc(blocsSi.get(decalageSi));
+                    this.buffers.get(1).setLettre('S');
+                    this.buffers.get(2).fillBloc(blocsSi.get(decalageSi+1));
+                    this.buffers.get(2).setLettre('S');
+                    decalageSi += 2;
+                }
+                else
+                {
+                    this.buffers.get(2).fillBloc(blocsSi.get(decalageSi));
+                    this.buffers.get(2).setLettre('S');
+                    decalageSi++;
                 }
             }
-            //on charge
-            this.buffers.get(2).fillBloc(this.disque.getTableS(i).getBlocs().get(0));
+            else if ((nbBlocsSi - decalageSi) == 1)
+            {
+                if (this.buffers.get(1).getNbTuples() == 0)
+                {
+                    this.buffers.get(1).fillBloc(blocsSi.get(decalageSi));
+                    this.buffers.get(1).setLettre('S');
+                    decalageSi++;
+                }
+                else
+                {
+                    this.buffers.get(2).fillBloc(blocsSi.get(decalageSi));
+                    this.buffers.get(2).setLettre('S');
+                    decalageSi++;
+                }
+            }
+            /***********************************************************/
+            jointure(col1,col2);
+            
+            //on met à jour les décalages en fonction du decalage de Si
+            if (decalageSi >= nbBlocsSi)
+            {
+                decalageRi += sousDecalageRi;
+                decalageSi = 0;
+            }
+            if (decalageRi >= nbBlocsRi)
+            {
+                end = true;
+            }  
         }
     }
     
-    public void jointure(Bloc blocRi, Bloc Si, int col1, int col2)
+    public void jointure(int col1, int col2)
     {
+        int countR = 0;
+        int countS = 0;
+        ArrayList<Tuple> blocR;
+        ArrayList<Tuple> blocS;
         
+        for(Buffer buffer : this.buffers)
+        {
+            if (buffer.getLettre() == 'R')
+                countR++;
+            else if (buffer.getLettre() == 'S')
+                countS++;
+        }
+        
+        //pour chaque buffer contenant une partie de Ri
+        for (int i=0; i<countR; i++)
+        {
+            blocR = this.buffers.get(i).getTuples();
+            //pour chaque buffer contenant une partie de Si
+            for (int j=0; j<countS; j++)
+            {
+                blocS = this.buffers.get(countR + j).getTuples();
+                
+                //on passe à la jointure entre les deux blocs
+                for (Tuple tuple1 : blocR)
+                {
+                    for (Tuple tuple2 : blocS)
+                    {
+                        if (tuple1.getAttributsList().get(col1) == tuple2.getAttributsList().get(col2))
+                        {
+                            Tuple tuple3 = new Tuple();
+                            tuple3.concatAttributs(tuple1, tuple2);
+                            this.buffers.get(3).fillTuple(tuple3);
+                        }
+                    }
+                }
+            }
+        }
+        
+        //on insère le contenu du dernier buffer dans la table résultat
+        for (Tuple tuple : this.buffers.get(3).getTuples())
+        {
+            this.disque.getTableRes().ecrireTuple(tuple);
+        }
     }
 }
