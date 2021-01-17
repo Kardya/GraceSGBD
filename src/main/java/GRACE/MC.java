@@ -125,7 +125,7 @@ public class MC {
                         }
                     }
                 }else{
-                    this.Cartesien();
+                    this.Cartesien(i,col1,col2);
                 }
             i++;
             }else{//Si le buffer 3 contient déjà plein
@@ -147,7 +147,39 @@ public class MC {
         this.buffers.get(3).vider();
     }
     
-    public void Cartesien(){
+    public void Cartesien(int i, int col1, int col2){
+        //on vérifie qui prend le plus de blocs entre Ri et Si
+        //convention : si Ri et Si prennent chacun + d'un bloc, on reserve Buff0 et Buff1 pour Ri et le dernier pour Si
+        
+        /*DECLARATION VARIABLES DE TRAVAIL*/
+        int nbBlocsRi = this.disque.getTableR(i).getNbBlocs(); //nombre de blocs de Ri
+        int nbBlocsSi = this.disque.getTableS(i).getNbBlocs(); //nombre de blocs de Si
+        ArrayList<Bloc> blocsRi = this.disque.getTableR(i).getBlocs(); //blocs de Ri
+        ArrayList<Bloc> blocsSi = this.disque.getTableS(i).getBlocs(); //blocs de Si
+        Bloc blocRi; //bloc temporaire qui va contenir le bloc de R avec lequel on travaille
+        Bloc blocSi; //bloc temporaire qui va contenir le bloc de S avec lequel on travaille
+        /**********************************/
+        
+        //si Ri prend plus d'un buffer
+        if (nbBlocsRi >= 1)
+        {
+            for (int j=0; j<nbBlocsRi; j+=2)
+            {
+                blocRi = blocsRi.get(j);
+                //this.buffers
+                for (int k=0; k<nbBlocsSi; k++)
+                {
+                    blocSi = blocsSi.get(k);
+                    jointure(blocRi,blocSi,col1,col2);
+                }
+            }
+            //on charge
+            this.buffers.get(2).fillBloc(this.disque.getTableS(i).getBlocs().get(0));
+        }
+    }
+    
+    public void jointure(Bloc blocRi, Bloc Si, int col1, int col2)
+    {
         
     }
 }
