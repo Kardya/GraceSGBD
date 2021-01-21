@@ -31,6 +31,10 @@ public class Tuple {
         return this.attributs;
     }
     
+    public String getAttributList(int i){
+        return this.attributs.get(i);
+    }
+    
     public String getAttributCle(){
         return this.attributCle;
     }

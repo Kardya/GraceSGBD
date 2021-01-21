@@ -51,11 +51,16 @@ public class MC {
         int nbTuples = this.buffers.get(0).getNbTuples();
         ArrayList<Tuple> tuples = this.buffers.get(0).getTuples();
         //on affecte chaque buffer (sans l'initial)
-        for (int i=1; i<nbTuples+1; i++)
+        for (int i=0; i<nbTuples; i++)
         {
             ArrayList<Tuple> partTuples = new ArrayList<Tuple>();
-            partTuples.add(tuples.get(i-1));
-            this.buffers.get(i).fill(partTuples);
+            partTuples.add(tuples.get(i));
+            
+            int numBuffer = Integer.parseInt(tuples.get(i).getAttributList(2)) % 3 + 1;
+            
+            System.out.println("LOL " + numBuffer + tuples.get(i).getAttributList(0) + " " + tuples.get(i).getAttributList(1) + " " + tuples.get(i).getAttributList(2));
+            
+            this.buffers.get(numBuffer).fillTuple(tuples.get(i));
         }
         
         //on stocke le contenu de chaque buffer dans la table correspondante
@@ -64,7 +69,10 @@ public class MC {
             //pour chaque tuple, on envoie les données
             for (int j=0; j<this.buffers.get(i).getNbTuples(); j++)
             {
-                store(nomTable,i,this.buffers.get(i).getTuple(j));
+                if (!this.buffers.get(i).estVide())
+                {
+                    store(nomTable,i,this.buffers.get(i).getTuple(j));
+                }
             }
         }
     }

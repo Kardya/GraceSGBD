@@ -50,6 +50,14 @@ public class Buffer {
         return this.tuples;
     }
     
+    public boolean estVide()
+    {
+        boolean empty = false;
+        if (this.tuples.size() == 0)
+            empty = true;
+        return empty;
+    }
+    
     public Tuple getTuple(int i)
     {
         return this.tuples.get(i);
