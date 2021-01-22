@@ -12,8 +12,6 @@ import java.util.ArrayList;
  * @author re770061
  */
 public class Bloc {
-    private static int nbLectures;
-    private static int nbEcritures;
     private int taille;
     private boolean plein;
     ArrayList<Tuple> tuples;
@@ -28,15 +26,6 @@ public class Bloc {
     public boolean getPlein()
     {
         return this.plein;
-    }
-
-    public void lireTuple()
-    {
-        for(Tuple t : tuples){
-           for(String a : t.getAttributsList()){
-             System.out.println();
-           }
-        }
     }
 
     public void ecrireTuple(Tuple tuple)

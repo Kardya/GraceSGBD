@@ -13,7 +13,6 @@ import java.util.List;
  * @author re770061
  */
 public class Tuple {
-    private int longueur;
     private String attributCle;
     private List<String> attributs;
     

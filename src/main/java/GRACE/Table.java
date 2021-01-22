@@ -60,9 +60,9 @@ public class Table {
         return this.nom;
     }
     
-    public void viderTable(){
+    /*public void viderTable(){
         this.blocs.clear();
-    }
+    }*/
     public String toString()
     {
         String chaine = "Nom de la table : " + this.nom + "\n";
