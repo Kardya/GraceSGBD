@@ -225,8 +225,8 @@ public class App
        S.ecrireTuple(tuple26);
        S.ecrireTuple(tuple27);
        
-       //System.out.println(R);
-       //System.out.println(S);
+       System.out.println(R);
+       System.out.println(S);
        
        MC mc = new MC(disque);
        mc.fill(R);

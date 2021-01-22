@@ -33,6 +33,7 @@ public class MC {
         }
     }
     
+    //on l'utilise pour pour découper les tables R et S
     public void fill(Table table)
     {
         ArrayList<Bloc> blocs = table.getBlocs();
@@ -56,9 +57,9 @@ public class MC {
             ArrayList<Tuple> partTuples = new ArrayList<Tuple>();
             partTuples.add(tuples.get(i));
             
+            //le 2 correspond à l'attribut de jointure, l'attribut de l'age
             int numBuffer = Integer.parseInt(tuples.get(i).getAttributList(2)) % 3 + 1;
-            
-            System.out.println("LOL " + numBuffer + tuples.get(i).getAttributList(0) + " " + tuples.get(i).getAttributList(1) + " " + tuples.get(i).getAttributList(2));
+           
             
             this.buffers.get(numBuffer).fillTuple(tuples.get(i));
         }
